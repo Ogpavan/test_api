@@ -1,8 +1,23 @@
-const express = require("express");
+const express = require('express');
+
+const cors = require('cors');
+require('dotenv').config();
+// const writersbooks = require('./models/writersbooks.js');
+
 const app = express();
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+app.use(cors({
+  origin: '*',  // Allow all origins temporarily for testing
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
+}));
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+app.use(express.json());
 
-module.exports = app;
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+
+module.exports = app;  // Ensure the app is exported for Vercel

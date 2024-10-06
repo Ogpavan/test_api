@@ -1,16 +1,16 @@
 const express = require('express');
 
-// const cors = require('cors');
+const cors = require('cors');
 // require('dotenv').config();
 // const writersbooks = require('./models/writersbooks.js');
 
 const app = express();
 
-// app.use(cors({
-//   origin: '*',  // Allow all origins temporarily for testing
-//   methods: 'GET,POST,PUT,DELETE',
-//   allowedHeaders: 'Content-Type,Authorization'
-// }));
+app.use(cors({
+  origin: '*',  // Allow all origins temporarily for testing
+  methods: 'GET,POST,PUT,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
+}));
 
 app.use(express.json());
 

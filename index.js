@@ -68,39 +68,39 @@ app.get('/hello', (req, res) => {
   res.send('Hello ');
 });
 
-app.post('/api/books', async (req, res) => {
-  try {
-    const { title, description, coverImage, content, primaryGenre, genres, author, uid } = req.body;
+// app.post('/api/books', async (req, res) => {
+//   try {
+//     const { title, description, coverImage, content, primaryGenre, genres, author, uid } = req.body;
 
-    // Create and save the new book
-    const newBook = new Book({
-      title,
-      description,
-      coverImage,
-      content,
-      primaryGenre,
-      genres,
-      author,
-      user: uid, // Assuming 'uid' is the writerId from Firebase Auth
-    });
+//     // Create and save the new book
+//     const newBook = new Book({
+//       title,
+//       description,
+//       coverImage,
+//       content,
+//       primaryGenre,
+//       genres,
+//       author,
+//       user: uid, // Assuming 'uid' is the writerId from Firebase Auth
+//     });
 
-    const savedBook = await newBook.save();
+//     const savedBook = await newBook.save();
 
-    // Add the writer-book relationship to the writersBooks collection
-    const writerBook = new writersbooks({
-      writerId: uid, // Writer's ID (Firebase Auth User ID)
-      bookId: savedBook._id, // The ID of the newly created book
-    });
+//     // Add the writer-book relationship to the writersBooks collection
+//     const writerBook = new writersbooks({
+//       writerId: uid, // Writer's ID (Firebase Auth User ID)
+//       bookId: savedBook._id, // The ID of the newly created book
+//     });
 
-    await writerBook.save(); // Save the relationship in the new collection
+//     await writerBook.save(); // Save the relationship in the new collection
 
-    res.status(201).json(savedBook); // Respond with the saved book
+//     res.status(201).json(savedBook); // Respond with the saved book
 
-  } catch (error) {
-    console.error('Error adding book:', error.message);
-    res.status(500).json({ error: 'Failed to add book' });
-  }
-});
+//   } catch (error) {
+//     console.error('Error adding book:', error.message);
+//     res.status(500).json({ error: 'Failed to add book' });
+//   }
+// });
 
 
 
